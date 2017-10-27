@@ -60,7 +60,7 @@
                         @foreach($tasks as $task)
                             @if($task->status == 1)
                                 <li class="list-group-item list-group-item-success">
-                                <span class="badge">{{ $task->updated_at->diffForHumans() }}</span>
+                                <span class="badge">{{ $task->created_at->diffForHumans($task->updated_at) }}</span>
                                 <s>{{ $task->note }}</s>
                                 </li>
                             @endif
