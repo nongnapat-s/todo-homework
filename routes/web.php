@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 
-Route::post('/todo/create','TaskController@store');
+Route::post('/{project}/store','TaskController@store');
 
 Route:: get('/{project}/todo','TaskController@create');
 
-Route::get('/edit','TaskController@update');
+Route::get('/{project}/update','TaskController@update');
 

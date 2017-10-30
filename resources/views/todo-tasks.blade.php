@@ -29,7 +29,7 @@
     <body>
         <div class="container">
             <div class="col-sm-12">
-                <form action="/todo/create" method="POST">
+                <form action="/{{ $project }}/store" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="project" value="{{ $project }}">
                     <div class="alert alert-info" role="alert">
@@ -45,7 +45,7 @@
                     <li class="list-group-item active">Todo Tasks</li>
                         @foreach ($tasks as $task)
                             @if($task->status ==0)
-                                <a href="/edit?_token={{ csrf_token() }}&id={{ $task->id }}" type="button" class="list-group-item list-group-item-warning">
+                                <a href="/{{ $project }}/update?_token={{ csrf_token() }}&id={{ $task->id }}" type="button" class="list-group-item list-group-item-warning">
                                 <span class="badge">{{ $task->created_at->diffForHumans() }}</span>
                                 {{ $task->note }}
                                 </a>
