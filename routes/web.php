@@ -22,3 +22,4 @@ Route::get('/{project}/todo','TaskController@create');
 
 Route::get('/{project}/update','TaskController@update');
 
+Route::get('/test','TaskController@setImageCompressionQuality');

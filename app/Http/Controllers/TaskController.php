@@ -98,4 +98,12 @@ class TaskController extends Controller
     {
         //
     }
+
+    function setImageCompressionQuality() {
+        $imagick = new \Imagick(realpath('1.jpg'));
+        $imagick->cropImage(3000, 3000,250, 1200);
+        header("Content-Type: image/jpg");
+        echo $imagick->getImageBlob();
+    }
+
 }
