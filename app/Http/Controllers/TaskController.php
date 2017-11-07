@@ -122,7 +122,7 @@ class TaskController extends Controller
           $newimage = imagecreatefromjpeg($filename);
           imagecopyresampled($imagetruecolor,$newimage,0,0,0,0,200,$newheight,$width,$height);
           imagejpeg($imagetruecolor,'newjpg.jpg',80);
-          echo $filename." Processed";
+          echo $filename." Processed ";
         };
         processjpg($filename1);
     }
