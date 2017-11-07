@@ -100,10 +100,20 @@ class TaskController extends Controller
     }
 
     function setImageCompressionQuality() {
-        $imagick = new \Imagick(realpath('1.jpg'));
-        $imagick->cropImage(3000, 3000,250, 1200);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
+        $dst_x = 0; 
+        $dst_y = 0;  
+        $src_x = 100; 
+        $src_y = 100; 
+        $dst_w = 160; 
+        $dst_h = 120; 
+        $src_w = 260; 
+        $src_h = 220; 
+        $dst_image = imagecreatetruecolor($dst_w, $dst_h);
+        $src_image = imagecreatefromjpeg('1.jpg');
+        imagecopyresampled($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+        $test = imagejpeg($dst_image, 'crop.jpg');
+        $path = 'crop.jpg';
+        echo "<img src=\"".$path."\" alt=\"error\">"; 
     }
 
 }
