@@ -100,20 +100,31 @@ class TaskController extends Controller
     }
 
     function setImageCompressionQuality() {
-        $dst_x = 0; 
-        $dst_y = 0;  
-        $src_x = 100; 
-        $src_y = 100; 
-        $dst_w = 160; 
-        $dst_h = 120; 
-        $src_w = 260; 
-        $src_h = 220; 
-        $dst_image = imagecreatetruecolor($dst_w, $dst_h);
-        $src_image = imagecreatefromjpeg('1.jpg');
-        imagecopyresampled($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
-        $test = imagejpeg($dst_image, 'crop.jpg');
-        $path = 'crop.jpg';
-        echo "<img src=\"".$path."\" alt=\"error\">"; 
+        // $dst_x = 0; 
+        // $dst_y = 0;  
+        // $src_x = 100; 
+        // $src_y = 100; 
+        // $dst_w = 160; 
+        // $dst_h = 120; 
+        // $src_w = 260; 
+        // $src_h = 220; 
+        // $dst_image = imagecreatetruecolor($dst_w, $dst_h);
+        // $src_image = imagecreatefromjpeg('1.jpg');
+        // imagecopyresampled($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+        // $test = imagejpeg($dst_image, 'crop.jpg');
+        // $path = 'crop.jpg';
+        // echo "<img src=\"".$path."\" alt=\"error\">"; 
+        $filename1 = '1.jpg';
+        function processjpg($filename){
+          list($width,$height) = getimagesize($filename);
+          $newheight = (200*$height)/$width;
+          $imagetruecolor = imagecreatetruecolor(200,$newheight);
+          $newimage = imagecreatefromjpeg($filename);
+          imagecopyresampled($imagetruecolor,$newimage,0,0,0,0,200,$newheight,$width,$height);
+          imagejpeg($imagetruecolor,'newjpg.jpg',80);
+          echo $filename." Processed";
+        };
+        processjpg($filename1);
     }
 
 }
